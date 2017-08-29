@@ -1,8 +1,12 @@
 class World {
     constructor() {
         this.noOfCreatures = 1;
-        this.maxFoodItems = 100;
+        this.maxFoodItems = 50;
         this.NoOfSmellTypes = 3;
+        this.goodness = [];
+        this.GenerateGoodnessValues();
+    }
+    GenerateGoodnessValues() {
         this.goodness = [];
         for (var i = 0; i < this.NoOfSmellTypes; i++) {
             if (i < 3) {
@@ -61,8 +65,8 @@ class World {
                 this.Things.push(replacementThing);
             }
         }
-        else if (noOfFoodItemsLeft < this.maxFoodItems - 3) {
-            for (var i = 0; i < Helper.RandomIntFromInterval(0, 3); i++) {
+        else if (noOfFoodItemsLeft < this.maxFoodItems / 2) {
+            for (var i = 0; i < Helper.RandomIntFromInterval(0, this.maxFoodItems / 2); i++) {
                 var replacementThing = Helper.MakeRandomFoodItem(world);
                 this.Things.push(replacementThing);
             }

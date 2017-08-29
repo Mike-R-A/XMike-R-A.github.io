@@ -26,6 +26,12 @@ class Drawable {
         p.strokeWeight(this.strokeWeight);
         p.fill(this.fill);
         p.ellipse(this.x, this.y, this.width, this.height);
+        if (this.label) {
+            var textX = this.x;
+            var textY = this.y;
+            p.fill(0);
+            p.text(this.label, textX, textY, textX + 10, textY + 10);
+        }
     }
 }
 //# sourceMappingURL=drawable.js.map

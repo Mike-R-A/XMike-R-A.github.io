@@ -1,10 +1,17 @@
 class Creature extends Thing {
-    constructor(world, x, y, width, height, stroke, strokeWeight, fill, smell) {
-        super(world, x, y, width, height, stroke, strokeWeight, fill, smell);
+    constructor(world, x, y, width, height, fill, smell, longTermImportanceFactor, minMemoryTime, maxMemoryTime) {
+        super(world, x, y, width, height, fill, 1, fill, smell);
         this.maxSize = 100;
         this.associations = [];
+        this.longTermImportanceFactor = 20000;
+        this.minMemoryTime = 50;
+        this.maxMemoryTime = 50;
         this.idealWellbeing = 100;
         this.desireForSmell = [];
+        this.score = 0;
+        this.longTermImportanceFactor = longTermImportanceFactor;
+        this.minMemoryTime = minMemoryTime;
+        this.maxMemoryTime = maxMemoryTime;
         for (var i = 0; i < world.NoOfSmellTypes; i++) {
             this.associations.push(1);
             this.desireForSmell.push(1);
@@ -33,12 +40,12 @@ class Creature extends Thing {
                 averageSmell[i] = (this.whatICanSmell[i] + whatICouldSmellPreviously[i]) / 2;
             }
             var changeInWellbeing = this.wellbeing - wellBeingPreviously;
-            var weightFactor = 200000;
             for (var i = 0; i < noOfSmells; i++) {
-                this.associations[i] += averageSmell[i] * changeInWellbeing / weightFactor;
+                this.associations[i] += averageSmell[i] * changeInWellbeing / this.longTermImportanceFactor;
             }
             this.NormaliseAssociations();
-        }, Helper.RandomIntFromInterval(50, 3000));
+            //}, Helper.RandomIntFromInterval(50, 3000));
+        }, Helper.RandomIntFromInterval(this.minMemoryTime, this.maxMemoryTime));
     }
     NormaliseAssociations() {
         var noOfAssociations = this.associations.length;

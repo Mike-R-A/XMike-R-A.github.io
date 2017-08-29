@@ -3,6 +3,8 @@ class Thing extends Drawable {
         super(x, y, width, height, stroke, strokeWeight, fill);
         this._wellbeing = this.width;
         this._smell = [];
+        this.age = 0;
+        this.maxAge = 5;
         for (var i = 0; i < world.NoOfSmellTypes; i++) {
             this._smell.push(0);
         }
