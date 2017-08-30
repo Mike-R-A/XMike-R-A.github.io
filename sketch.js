@@ -6,7 +6,7 @@ function windowResized() {
 }
 var world = new World();
 world.NoOfSmellTypes = 5;
-world.noOfCreatures = 6;
+world.noOfCreatures = 4;
 var creatures = [];
 world.Things = Helper.MakeNoOfFoodItems(10, world);
 var creatureForStats;

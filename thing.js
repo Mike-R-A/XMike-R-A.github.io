@@ -59,8 +59,8 @@ class Thing extends Drawable {
                     yToOther = (yToOther + yChangeOfOther * 5) / 6;
                 }
                 if (otherThing instanceof Creature || distanceToOtherThing <= (this.width + otherThing.width) / 2) {
-                    this.x = this.x - xToOther * 2;
-                    this.y = this.y - yToOther * 2;
+                    this.x = this.x - xToOther * 1.1;
+                    this.y = this.y - yToOther * 1.1;
                 }
                 else {
                     this.x = this.x + xToOther;
