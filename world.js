@@ -4,6 +4,12 @@ class World {
         this.maxFoodItems = 50;
         this.NoOfSmellTypes = 3;
         this.goodness = [];
+        this.redVicinityX = Helper.RandomIntFromInterval(0, p.windowWidth);
+        this.redVicinityY = Helper.RandomIntFromInterval(0, p.windowHeight);
+        this.greenVicinityX = Helper.RandomIntFromInterval(0, p.windowWidth);
+        this.greenVicinityY = Helper.RandomIntFromInterval(0, p.windowHeight);
+        this.blueVicinityX = Helper.RandomIntFromInterval(0, p.windowWidth);
+        this.blueVicinityY = Helper.RandomIntFromInterval(0, p.windowHeight);
         this.GenerateGoodnessValues();
     }
     GenerateGoodnessValues() {

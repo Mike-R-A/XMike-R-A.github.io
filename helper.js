@@ -38,21 +38,28 @@ var Helper;
         var fillR = RandomIntFromInterval(0, 255);
         var fillG = RandomIntFromInterval(0, 255);
         var fillB = RandomIntFromInterval(0, 255);
-        var rand = RandomIntFromInterval(-1, 20);
+        var rand = RandomIntFromInterval(-1, 10);
         if (rand > 0) {
             var colourChoice = Helper.RandomIntFromInterval(0, 2);
+            var vicinitySpread = 20;
             switch (colourChoice) {
                 case 0:
                     fillG = 0;
                     fillB = 0;
+                    x = Helper.RandomIntFromInterval(world.redVicinityX - vicinitySpread, world.redVicinityX + vicinitySpread);
+                    y = Helper.RandomIntFromInterval(world.redVicinityY - vicinitySpread, world.redVicinityY + vicinitySpread);
                     break;
                 case 1:
                     fillB = 0;
                     fillR = 0;
+                    x = Helper.RandomIntFromInterval(world.greenVicinityX - vicinitySpread, world.greenVicinityX + vicinitySpread);
+                    y = Helper.RandomIntFromInterval(world.greenVicinityY - vicinitySpread, world.greenVicinityY + vicinitySpread);
                     break;
                 case 2:
                     fillR = 0;
                     fillG = 0;
+                    x = Helper.RandomIntFromInterval(world.blueVicinityX - vicinitySpread, world.blueVicinityX + vicinitySpread);
+                    y = Helper.RandomIntFromInterval(world.blueVicinityY - vicinitySpread, world.blueVicinityY + vicinitySpread);
                     break;
             }
         }
@@ -67,10 +74,19 @@ var Helper;
         return thing;
     }
     Helper.MakeRandomFoodItem = MakeRandomFoodItem;
+    function GenerateNewVicinities(world) {
+        world.redVicinityX = Helper.RandomIntFromInterval(0, p.windowWidth);
+        world.redVicinityY = Helper.RandomIntFromInterval(0, p.windowHeight);
+        world.greenVicinityX = Helper.RandomIntFromInterval(0, p.windowWidth);
+        world.greenVicinityY = Helper.RandomIntFromInterval(0, p.windowHeight);
+        world.blueVicinityX = Helper.RandomIntFromInterval(0, p.windowWidth);
+        world.blueVicinityY = Helper.RandomIntFromInterval(0, p.windowHeight);
+    }
+    Helper.GenerateNewVicinities = GenerateNewVicinities;
     function AddThing(world, x, y, r, g, b) {
         var thing = Helper.MakeRandomFoodItem(world);
         var diameter = RandomIntFromInterval(10, 100);
-        thing.maxAge = Helper.RandomIntFromInterval(1, 50) / 2;
+        thing.maxAge = Helper.RandomIntFromInterval(1, 100) / 2;
         thing.x = x;
         thing.y = y;
         thing.stroke = [r, g, b];

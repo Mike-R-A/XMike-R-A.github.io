@@ -55,8 +55,8 @@ class Thing extends Drawable {
                 if (otherThing.lastX != null && otherThing.lastY != null) {
                     var xChangeOfOther = otherThing.x - otherThing.lastX;
                     var yChangeOfOther = otherThing.y - otherThing.lastY;
-                    xToOther = xToOther + xChangeOfOther;
-                    yToOther = yToOther + yChangeOfOther;
+                    xToOther = (xToOther + xChangeOfOther * 5) / 6;
+                    yToOther = (yToOther + yChangeOfOther * 5) / 6;
                 }
                 if (otherThing instanceof Creature || distanceToOtherThing <= (this.width + otherThing.width) / 2) {
                     this.x = this.x - xToOther * 2;

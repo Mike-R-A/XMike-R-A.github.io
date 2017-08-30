@@ -16,11 +16,11 @@ for (var i = 0; i < world.noOfCreatures; i++) {
     creature.wellbeing = 100;
     if (i == 0) {
         creatureForStats = creature;
-        creature.fill = [244, 229, 255];
     }
 }
 var isFirstTime = true;
 var refreshGoodnessInterval;
+var switchVicinitiesInterval;
 var thingPathLength = 20;
 function draw() {
     world.draw();
@@ -30,7 +30,7 @@ function draw() {
         if (t instanceof Creature) {
             var c = t;
             c.LiveTheNextMoment(world);
-            c.wellbeing = c.wellbeing - 0.01;
+            c.wellbeing = c.wellbeing - 0.005;
             if (Math.floor(c.wellbeing) == Math.floor(c.idealWellbeing)) {
                 c.score++;
             }
@@ -54,6 +54,12 @@ function draw() {
             var rand = Helper.RandomIntFromInterval(1, 280);
             if (rand == 1) {
                 world.GenerateGoodnessValues();
+            }
+        }, 1000);
+        switchVicinitiesInterval = setInterval(() => {
+            var rand = Helper.RandomIntFromInterval(1, 60);
+            if (rand == 1) {
+                Helper.GenerateNewVicinities(world);
             }
         }, 1000);
         isFirstTime = false;
